@@ -1,7 +1,5 @@
-var outputPlayer;
-
 QUnit.test("player1 Test", function (assert) {
-    outputPlayer = player1;
+    var outputPlayer = player1;
     assert.deepEqual(outputPlayer,
         {
             name   : "Kandra",
@@ -10,7 +8,7 @@ QUnit.test("player1 Test", function (assert) {
         }, "We expect our player1 to be " + outputPlayer.name + " with HP " + outputPlayer.health + " in " + outputPlayer.place + ".");
 });
 QUnit.test("player2 Test", function (assert) {
-    outputPlayer = player2;
+    var outputPlayer = player2;
     assert.deepEqual(outputPlayer,
         {
             name   : "Dax",
