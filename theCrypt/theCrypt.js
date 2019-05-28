@@ -24,7 +24,6 @@ console.log("Items: " + player.items);*/
 
 var player1;
 var player2;
-var player;
 var showPlayerInfo;
 
 player1 = {
@@ -40,7 +39,7 @@ player2 = {
 };
 
 showPlayerInfo = function (inputPlayer) {
-    player = inputPlayer;
+    var player = inputPlayer;
     console.log(player.name);
     console.log("-------------------------------");
     console.log(player.name + " is in " + player.place);
