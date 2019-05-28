@@ -24,7 +24,6 @@ findTotal();
 console.log(number1 + " + " + number2 + " = " + result);
 
 // ** Movie Information **
-var movie;
 var movie1;
 var movie2;
 var movie3;
@@ -49,7 +48,7 @@ movie3 = {
 }
 
 showMovieInfo = function(inputMovie) {
-    movie = inputMovie;
+    var movie = inputMovie;
     console.log("Movie information for " + movie.title);
     console.log("-------------------------------");
     console.log("Actors: " + movie.actors);
