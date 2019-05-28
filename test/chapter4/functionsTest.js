@@ -1,11 +1,9 @@
-var outputMovie;
-
 QUnit.test("findTotal Test", function (assert) {
     var outpuResult = result;
     assert.equal( outpuResult, "1066", "We expect our result variable to be 1066." );
 });
 QUnit.test("movie1 Test", function (assert) {
-    outputMovie = movie1;
+    var outputMovie = movie1;
     assert.deepEqual(outputMovie,
         {
             title     : "Inside Out",
@@ -14,7 +12,7 @@ QUnit.test("movie1 Test", function (assert) {
         }, "We expect our movie1 variable to be " + outputMovie.title + " by " + outputMovie.directors + " starring " + outputMovie.actors + ".");
 });
 QUnit.test("movie2 Test", function (assert) {
-    outputMovie = movie2;
+    var outputMovie = movie2;
     assert.deepEqual(outputMovie,
         {
             title     : "Spectre",
@@ -23,7 +21,7 @@ QUnit.test("movie2 Test", function (assert) {
         }, "We expect our movie1 variable to be " + outputMovie.title + " by " + outputMovie.directors + " starring " + outputMovie.actors + ".");
 });
 QUnit.test("movie3 Test", function (assert) {
-    outputMovie = movie3;
+    var outputMovie = movie3;
     assert.deepEqual(outputMovie,
         {
             title     : "Star Wars: Episode VII - The Force Awakens",
