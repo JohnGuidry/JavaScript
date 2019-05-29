@@ -51,25 +51,47 @@ showPlayerInfo = function (inputPlayer) {
 showPlayerInfo(player1);
 showPlayerInfo(player2); */
 
-// ** from chapter 5 **
+// ** from chapter 5, 6 **
 
 var player1;
 var player2;
+var getBorder;
 var showPlayerName;
+var getPlayerName;
 var showPlayerHealth;
+var getPlayerHealth;
 var showPlayerPlace;
+var getPlayerPlace;
 var showPlayerInfo;
+var getPlayerInfo;
+
+
+getBorder = function () {
+    return "===================================";
+}
 
 showPlayerName = function (playerName) {
     console.log(playerName);
+}
+
+getPlayerName = function (playerName) {
+    return (playerName);
 }
 
 showPlayerHealth = function (playerName, playerHealth) {
     console.log(playerName + " has health " + playerHealth);
 }
 
+getPlayerHealth = function (playerName, playerHealth) {
+    return (playerName + " has health " + playerHealth);
+}
+
 showPlayerPlace = function (playerName, playerPlace) {
     console.log(playerName + " is in " + playerPlace);
+}
+
+getPlayerPlace = function (playerName, playerPlace) {
+    return (playerName + " is in " + playerPlace);
 }
 
 showPlayerInfo = function (inputPlayer) {
@@ -80,6 +102,19 @@ showPlayerInfo = function (inputPlayer) {
     showPlayerHealth(player.name, player.health);
     console.log("-------------------------------");
     console.log("");
+}
+
+getPlayerInfo = function (playerName, playerPlace, playerHealth) {
+    var playerInfo;
+
+    playerInfo = "\n" + getPlayerName(playerName);
+    playerInfo += "\n" + getBorder();
+    playerInfo += "\n" + getPlayerPlace(playerName, playerPlace);
+    playerInfo += "\n" + getPlayerHealth(playerName, playerHealth);
+    playerInfo += "\n" + getBorder();
+    playerInfo += "\n";
+
+    return (playerInfo);
 }
 
 player1 = {
@@ -104,5 +139,8 @@ showPlayerHealth(player2.name, player2.health);
 showPlayerPlace(player1.name, player1.place);
 showPlayerPlace(player2.name, player2.place);*/
 
-showPlayerInfo(player1);
-showPlayerInfo(player2);
+//showPlayerInfo(player1);
+//showPlayerInfo(player2);
+
+console.log(getPlayerInfo(player1.name, player1.place, player1.health));
+console.log(getPlayerInfo(player2.name, player2.place, player2.health));
