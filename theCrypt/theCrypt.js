@@ -53,94 +53,175 @@ showPlayerInfo(player2); */
 
 // ** from chapter 5, 6 **
 
-var player1;
-var player2;
-var getBorder;
-var showPlayerName;
-var getPlayerName;
-var showPlayerHealth;
-var getPlayerHealth;
-var showPlayerPlace;
-var getPlayerPlace;
-var showPlayerInfo;
-var getPlayerInfo;
+// var player1;
+// var player2;
+// var getBorder;
+// var showPlayerName;
+// var getPlayerName;
+// var showPlayerHealth;
+// var getPlayerHealth;
+// var showPlayerPlace;
+// var getPlayerPlace;
+// var showPlayerInfo;
+// var getPlayerInfo;
 
 
-getBorder = function () {
-    return "===================================";
-}
+// getBorder = function () {
+//     return "===================================";
+// }
 
-showPlayerName = function (playerName) {
-    console.log(playerName);
-}
+// showPlayerName = function (playerName) {
+//     console.log(playerName);
+// }
 
-getPlayerName = function (playerName) {
-    return (playerName);
-}
+// getPlayerName = function (playerName) {
+//     return (playerName);
+// }
 
-showPlayerHealth = function (playerName, playerHealth) {
-    console.log(playerName + " has health " + playerHealth);
-}
+// showPlayerHealth = function (playerName, playerHealth) {
+//     console.log(playerName + " has health " + playerHealth);
+// }
 
-getPlayerHealth = function (playerName, playerHealth) {
-    return (playerName + " has health " + playerHealth);
-}
+// getPlayerHealth = function (playerName, playerHealth) {
+//     return (playerName + " has health " + playerHealth);
+// }
 
-showPlayerPlace = function (playerName, playerPlace) {
-    console.log(playerName + " is in " + playerPlace);
-}
+// showPlayerPlace = function (playerName, playerPlace) {
+//     console.log(playerName + " is in " + playerPlace);
+// }
 
-getPlayerPlace = function (playerName, playerPlace) {
-    return (playerName + " is in " + playerPlace);
-}
+// getPlayerPlace = function (playerName, playerPlace) {
+//     return (playerName + " is in " + playerPlace);
+// }
 
-showPlayerInfo = function (inputPlayer) {
-    var player = inputPlayer;
-    showPlayerName(player.name);
-    console.log("-------------------------------");
-    showPlayerPlace(player.name, player.place);
-    showPlayerHealth(player.name, player.health);
-    console.log("-------------------------------");
-    console.log("");
-}
+// showPlayerInfo = function (inputPlayer) {
+//     var player = inputPlayer;
+//     showPlayerName(player.name);
+//     console.log("-------------------------------");
+//     showPlayerPlace(player.name, player.place);
+//     showPlayerHealth(player.name, player.health);
+//     console.log("-------------------------------");
+//     console.log("");
+// }
 
-getPlayerInfo = function (playerName, playerPlace, playerHealth) {
-    var playerInfo;
+// getPlayerInfo = function (playerName, playerPlace, playerHealth) {
+//     var playerInfo;
 
-    playerInfo = "\n" + getPlayerName(playerName);
-    playerInfo += "\n" + getBorder();
-    playerInfo += "\n" + getPlayerPlace(playerName, playerPlace);
-    playerInfo += "\n" + getPlayerHealth(playerName, playerHealth);
-    playerInfo += "\n" + getBorder();
-    playerInfo += "\n";
+//     playerInfo = "\n" + getPlayerName(playerName);
+//     playerInfo += "\n" + getBorder();
+//     playerInfo += "\n" + getPlayerPlace(playerName, playerPlace);
+//     playerInfo += "\n" + getPlayerHealth(playerName, playerHealth);
+//     playerInfo += "\n" + getBorder();
+//     playerInfo += "\n";
 
-    return (playerInfo);
-}
+//     return (playerInfo);
+// }
 
-player1 = {
+// player1 = {
+//     name   : "Kandra",
+//     place  : "The Dungeon of Doom",
+//     health : 50
+// };
+
+// player2 = {
+//     name   : "Dax",
+//     place  : "The Old Library",
+//     health : 40
+// };
+
+// /* Removed from chapter 5 demonstration
+// showPlayerName(player1.name);
+// showPlayerName(player2.name);
+
+// showPlayerHealth(player1.name, player1.health);
+// showPlayerHealth(player2.name, player2.health);
+
+// showPlayerPlace(player1.name, player1.place);
+// showPlayerPlace(player2.name, player2.place);*/
+
+// //showPlayerInfo(player1);
+// //showPlayerInfo(player2);
+
+// console.log(getPlayerInfo(player1.name, player1.place, player1.health));
+// console.log(getPlayerInfo(player2.name, player2.place, player2.health));
+
+// ** 7 **
+
+var spacer = {
+    blank: function () {
+        return "";
+    },
+
+    newLine: function() {
+        return "\n";
+    },
+
+    line: function (length, character) {
+        var longString = character;
+
+        for(var i = 0; i < length; i++) { // I really did not want to write out 4 different 40 character count lines of symbols...
+            longString += character;
+        }
+
+        length = Math.max(0, length);
+        length = Math.min(40, length);
+        return longString.substr(longString.indexOf(character), length);
+    },
+
+    wrap: function (text, length, character) {
+        var padLength = length - text.length - 3;
+        var wrapText = character + " " + text;
+        wrapText += spacer.line(padLength, " ");
+        wrapText += character;
+        return wrapText;
+    },
+
+    box: function (text, length, character) {
+        var boxText = spacer.newLine();
+        boxText += spacer.line(length, character) + spacer.newLine();
+        boxText += spacer.wrap(text, length, character) + spacer.newLine();
+        boxText += spacer.line(length, character) + spacer.newLine();
+        return boxText;
+    }
+};
+
+var getPlayerName = function (player) {
+    return (player.name);
+};
+
+var getPlayerHealth = function (player) {
+    return (player.name + " has health " + player.health);
+};
+
+var getPlayerPlace = function (player) {
+    return (player.name + " is in " + player.place);
+};
+
+var getPlayerInfo = function (player, character) {
+    var place = getPlayerPlace(player);
+    var health = getPlayerHealth(player);
+    var longest = Math.max(place.length, health.length) + 4;
+
+    var info = spacer.box(getPlayerName(player), longest, character);
+    info += spacer.wrap(place, longest, character);
+    info += spacer.newLine() + spacer.wrap(health, longest, character);
+    info += spacer.newLine() + spacer.line(longest, character);
+    info += spacer.newLine();
+
+    return info;
+};
+
+var player1 = {
     name   : "Kandra",
     place  : "The Dungeon of Doom",
     health : 50
 };
 
-player2 = {
+var player2 = {
     name   : "Dax",
     place  : "The Old Library",
     health : 40
 };
 
-/* Removed from chapter 5 demonstration
-showPlayerName(player1.name);
-showPlayerName(player2.name);
-
-showPlayerHealth(player1.name, player1.health);
-showPlayerHealth(player2.name, player2.health);
-
-showPlayerPlace(player1.name, player1.place);
-showPlayerPlace(player2.name, player2.place);*/
-
-//showPlayerInfo(player1);
-//showPlayerInfo(player2);
-
-console.log(getPlayerInfo(player1.name, player1.place, player1.health));
-console.log(getPlayerInfo(player2.name, player2.place, player2.health));
+console.log(getPlayerInfo(player1, "="));
+console.log(getPlayerInfo(player2, "+"));

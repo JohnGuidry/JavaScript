@@ -59,7 +59,7 @@ console.log(spacer.blank());
 // OR 
 
 spacer = {
-    blank: function() {
+    blank: function() { //methods
         return "";  
     },
     newLine: function() {
