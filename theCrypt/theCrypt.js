@@ -145,7 +145,7 @@ showPlayerInfo(player2); */
 // console.log(getPlayerInfo(player1.name, player1.place, player1.health));
 // console.log(getPlayerInfo(player2.name, player2.place, player2.health));
 
-// ** 7 **
+// ** 7, 8**
 
 var spacer = {
     blank: function () {
@@ -197,6 +197,16 @@ var getPlayerPlace = function (player) {
     return (player.name + " is in " + player.place);
 };
 
+var getPlayerItems = function (player) {
+    var itemsString = "Items:" + spacer.newLine();
+
+    player.items.forEach(function (item) {
+        itemsString += "    - " + item + spacer.newLine();
+    });
+
+    return itemsString;
+};
+
 var getPlayerInfo = function (player, character) {
     var place = getPlayerPlace(player);
     var health = getPlayerHealth(player);
@@ -208,13 +218,23 @@ var getPlayerInfo = function (player, character) {
     info += spacer.newLine() + spacer.line(longest, character);
     info += spacer.newLine();
 
+    info += spacer.newLine();
+    info += " " + getPlayerItems(player);
+    info += spacer.newLine();
+    info += spacer.line(longest, character);
+
     return info;
+};
+
+var showPlayerInfo = function (player, character) {
+    console.log(getPlayerInfo(player, character));
 };
 
 var player1 = {
     name   : "Kandra",
     place  : "The Dungeon of Doom",
-    health : 50
+    health : 50,
+    items  : ["a trusty lamp"]
 };
 
 var player2 = {
@@ -223,5 +243,6 @@ var player2 = {
     health : 40
 };
 
-console.log(getPlayerInfo(player1, "="));
-console.log(getPlayerInfo(player2, "+"));
+showPlayerInfo(player1, "=");
+player1.items.push("a rusty key");
+showPlayerInfo(player1, "*");
