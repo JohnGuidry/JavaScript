@@ -200,8 +200,8 @@ var getPlayerPlace = function (player) {
 var getPlayerItems = function (player) {
     var itemsString = "Items:" + spacer.newLine();
 
-    player.items.forEach(function (item) {
-        itemsString += "    - " + item + spacer.newLine();
+    player.items.forEach(function (item, i) { //Furhter Adventures from Chapter 8
+        itemsString += "    - " + player.items[i + 1] + spacer.newLine();
     });
 
     return itemsString;
@@ -246,3 +246,37 @@ var player2 = {
 showPlayerInfo(player1, "=");
 player1.items.push("a rusty key");
 showPlayerInfo(player1, "*");
+
+/* Further Adventures from Chapter 8
+ *
+ * 1) Add and remove items at the prompt
+ *    using push and pop. Notice what is displayed
+ *    when push and pop are called.
+ *
+ * 2) Use the index argument for forEach
+ *    to number the items displayed. Make
+ *    the numbers start at 1.
+ *
+ * 3) Write a showItem function that accepts
+ *    a player and an itemNumber as arguments
+ *    and displays the specified player item.
+ *
+ * 4) Write an addItem function that accepts
+ *    a player and an item title as arguments
+ *    and adds the item title to the player's
+ *    item array.
+ *
+ */
+
+var showItem = function (player, itemNumber) {
+    console.log(player + ": " + player.items[itemNumber]);
+  }
+  
+var addItem = function (player, itemTitle) {
+    player.items.push(itemTitle);
+}
+  
+
+addItem(player1, "a new item");
+
+showPlayerInfo(player1, "=");
