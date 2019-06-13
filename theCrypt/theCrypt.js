@@ -145,7 +145,7 @@ showPlayerInfo(player2); */
 // console.log(getPlayerInfo(player1.name, player1.place, player1.health));
 // console.log(getPlayerInfo(player2.name, player2.place, player2.health));
 
-// ** 7 **
+// ** 7, 8**
 
 var spacer = {
     blank: function () {
@@ -197,6 +197,16 @@ var getPlayerPlace = function (player) {
     return (player.name + " is in " + player.place);
 };
 
+var getPlayerItems = function (player) {
+    var itemsString = "Items:" + spacer.newLine();
+
+    player.items.forEach(function (item, i) { //Furhter Adventures from Chapter 8
+        itemsString += "    - " + player.items[i + 1] + spacer.newLine();
+    });
+
+    return itemsString;
+};
+
 var getPlayerInfo = function (player, character) {
     var place = getPlayerPlace(player);
     var health = getPlayerHealth(player);
@@ -208,13 +218,23 @@ var getPlayerInfo = function (player, character) {
     info += spacer.newLine() + spacer.line(longest, character);
     info += spacer.newLine();
 
+    info += spacer.newLine();
+    info += " " + getPlayerItems(player);
+    info += spacer.newLine();
+    info += spacer.line(longest, character);
+
     return info;
+};
+
+var showPlayerInfo = function (player, character) {
+    console.log(getPlayerInfo(player, character));
 };
 
 var player1 = {
     name   : "Kandra",
     place  : "The Dungeon of Doom",
-    health : 50
+    health : 50,
+    items  : ["a trusty lamp"]
 };
 
 var player2 = {
@@ -223,5 +243,40 @@ var player2 = {
     health : 40
 };
 
-console.log(getPlayerInfo(player1, "="));
-console.log(getPlayerInfo(player2, "+"));
+showPlayerInfo(player1, "=");
+player1.items.push("a rusty key");
+showPlayerInfo(player1, "*");
+
+/* Further Adventures from Chapter 8
+ *
+ * 1) Add and remove items at the prompt
+ *    using push and pop. Notice what is displayed
+ *    when push and pop are called.
+ *
+ * 2) Use the index argument for forEach
+ *    to number the items displayed. Make
+ *    the numbers start at 1.
+ *
+ * 3) Write a showItem function that accepts
+ *    a player and an itemNumber as arguments
+ *    and displays the specified player item.
+ *
+ * 4) Write an addItem function that accepts
+ *    a player and an item title as arguments
+ *    and adds the item title to the player's
+ *    item array.
+ *
+ */
+
+var showItem = function (player, itemNumber) {
+    console.log(player + ": " + player.items[itemNumber]);
+  }
+  
+var addItem = function (player, itemTitle) {
+    player.items.push(itemTitle);
+}
+  
+
+addItem(player1, "a new item");
+
+showPlayerInfo(player1, "=");
